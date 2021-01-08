@@ -1799,3 +1799,16 @@ console.log(
     skate: 20,
   })
 );
+
+//75 String Pairs
+/*
+stringPairs("mubashir") ➞ ["mu", "ba", "sh", "ir"]
+
+stringPairs("edabit") ➞ ["ed", "ab", "it"]
+
+stringPairs("airforces") ➞ ["ai", "rf", "or", "ce", "s*"]
+*/
+
+const stringPairs = s => `${s}*`.match(/.{2}/g) || [];
+//or, just match any 2 characters with /../ and not specify the range with {2}
+const stringPairs = s => `${s}*`.match(/../g) || [];
