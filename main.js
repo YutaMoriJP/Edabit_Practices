@@ -1812,3 +1812,7 @@ stringPairs("airforces") ➞ ["ai", "rf", "or", "ce", "s*"]
 const stringPairs = s => `${s}*`.match(/.{2}/g) || [];
 //or, just match any 2 characters with /../ and not specify the range with {2}
 const stringPairs = s => `${s}*`.match(/../g) || [];
+
+//writing it like below is NOT necessary
+const stringPairs = str => (str + (str.length % 2 ? '*' : '')).match(/../g) || []
+//Reason - the match function's regex matches any character that is 2 characters long, so by adding * to an even length string, it makes the * an odd charcater and not matched by the function
