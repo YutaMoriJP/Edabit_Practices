@@ -1,22 +1,21 @@
 //Composition + IIFE
-
-const length = (s = '') => s.length;
-const trim = (s = '') => s.trim();
+const length = (s = "") => s.length;
+const trim = (s = "") => s.trim();
 const replace = (word, replacee, replacer) => word.replace(replacee, replacer);
 const slice = (arr, start, end) => arr.slice(start, end);
 
-magic returns an object with 4 methods
-invocation is maigc.trim() etc.
+//magic returns an object with 4 methods
+//invocation is maigc.trim() etc.
 
 const magic = (() => {
   return {
     length(arg) {
       return length(arg);
     },
-    replace(arg = '', x = '', y = '') {
+    replace(arg = "", x = "", y = "") {
       return replace(arg, x, y);
     },
-    slice(arg = '', x = '', y = '') {
+    slice(arg = "", x = "", y = "") {
       return slice(arg, x, y);
     },
     trim(arg) {
