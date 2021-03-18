@@ -495,3 +495,20 @@ const both = (n1, n2) => Math.sign(n1) === Math.sign(n2);
 const sum = arr => arr.reduce((a, c) => a + c, 0);
 
 const isFirstSuperior = (a1, a2) => sum(a1) > sum(a2);
+
+//105
+//adding a min function to the Array class
+
+Array.prototype.min = function () {
+  return Math.min(...this);
+};
+
+function inkLevels(inks) {
+  return Object.values(inks).min();
+}
+
+inkLevels({
+  cyan: 432,
+  magenta: 543,
+  yellow: 777,
+}); //432
