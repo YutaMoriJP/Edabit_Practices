@@ -489,3 +489,9 @@ console.log(getFrequencies(["A", "B", "A", "A", "A"]));
 //103)
 //return if the two given integers are both positive, negative, or just 0
 const both = (n1, n2) => Math.sign(n1) === Math.sign(n2);
+
+//104
+//slightly superior
+const sum = arr => arr.reduce((a, c) => a + c, 0);
+
+const isFirstSuperior = (a1, a2) => sum(a1) > sum(a2);
