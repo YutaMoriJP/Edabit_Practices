@@ -536,3 +536,43 @@ const bubbleSort = arr => {
 const getUnique = arr => arr.filter((v, i) => arr.indexOf(v) === i).join``;
 
 const longestString = (a, b) => getUnique(bubbleSort([...a, ...b]));
+
+//107
+//check if sentence is Alphabetically Sorted or not, word MUST be LONGER THAN 3 CHARACTERS LONG!
+//this time we are using MERGE SORT (O(2 log N)) and not BUBBLE SORT(O(N**2))
+const mergeSort = arr => {
+  if (arr.length < 2) return arr;
+  const mid = Math.floor(arr.length / 2);
+  const left = arr.slice(0, mid);
+  const right = arr.slice(mid);
+  return merge(mergeSort(left), mergeSort(right));
+};
+
+const merge = (left, right) => {
+  const sortedArr = [];
+  while (left.length && right.length) {
+    if (left[0] > right[0]) {
+      sortedArr.push(right.shift());
+    } else {
+      sortedArr.push(left.shift());
+    }
+  }
+  return [...sortedArr, ...left, ...right];
+};
+
+const isAlphabeticallySorted = sentence => {
+  const filtered = sentence.split` `
+    .filter(({ length }) => length >= 3)
+    .map(word => word.replace(/[^a-z]/gi, ""));
+  return filtered.some(word => word === mergeSort([...word]).join``);
+};
+/*
+isAlphabeticallySorted("Paula has a French accent.") ➞ true
+// "accent" is alphabetically sorted.
+
+isAlphabeticallySorted("The biopsy returned negative results.") ➞ true
+// "biopsy" is alphabetically sorted.
+
+isAlphabeticallySorted("She sells sea shells by the sea shore.") ➞ false
+// Although "by" is alphabetically sorted, it is only 2 letters long.
+*/
