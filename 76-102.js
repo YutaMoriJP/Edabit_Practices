@@ -512,3 +512,27 @@ inkLevels({
   magenta: 543,
   yellow: 777,
 }); //432
+
+//106) get one uniquely sorted string from the 2 parameter strings
+
+//uses the bubblesort algorithm and a helper function that returns the unique string
+const swap = (arr, a, b) => {
+  [arr[a], arr[b]] = [arr[b], arr[a]];
+};
+const bubbleSort = arr => {
+  let notSorted = true;
+  while (notSorted) {
+    notSorted = false;
+    arr.forEach((v, i) => {
+      if (v > arr[i + 1]) {
+        notSorted = true;
+        swap(arr, i, i + 1);
+      }
+    });
+  }
+  return arr;
+};
+
+const getUnique = arr => arr.filter((v, i) => arr.indexOf(v) === i).join``;
+
+const longestString = (a, b) => getUnique(bubbleSort([...a, ...b]));
