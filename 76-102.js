@@ -576,3 +576,17 @@ isAlphabeticallySorted("The biopsy returned negative results.") ➞ true
 isAlphabeticallySorted("She sells sea shells by the sea shore.") ➞ false
 // Although "by" is alphabetically sorted, it is only 2 letters long.
 */
+
+//retrieve first value from Set
+const set = new Set();
+set.add(1);
+
+const getFirst = set => set.values().next().value;
+
+set.add(2);
+
+const getSecond = set => [...set][0];
+
+set.add(3);
+
+const getThird = set => Array.from(set)[0];
