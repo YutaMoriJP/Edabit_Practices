@@ -590,3 +590,54 @@ const getSecond = set => [...set][0];
 set.add(3);
 
 const getThird = set => Array.from(set)[0];
+
+//109 sort the drinks array
+const mergeSort = arr => {
+  if (arr.length < 2) return arr;
+  const mid = Math.floor(arr.length / 2);
+  const l = arr.slice(0, mid),
+    r = arr.slice(mid);
+  return merge(mergeSort(l), mergeSort(r));
+};
+
+const merge = (left, right) => {
+  const sorted = [];
+  while (left.length && right.length) {
+    sorted.push(left[0].price > right[0].price ? right.shift() : left.shift());
+  }
+  return [...sorted, ...left, ...right];
+};
+
+const sortDrinkByPrice = d => mergeSort(d);
+sortDrinkByPrice([
+  { name: "lemonade", price: 90 },
+  { name: "lime", price: 432 },
+  { name: "peach", price: 23 },
+]);
+/*
+[
+	{name: 'peach', price: 23},
+	{name: 'lemonade', price: 90}, 
+	{name: 'lime', price: 432}
+];
+*/
+
+//110
+/*
+keysAndValues({ a: 1, b: 2, c: 3 })
+➞ [["a", "b", "c"], [1, 2, 3]]
+
+keysAndValues({ a: "Apple", b: "Microsoft", c: "Google" })
+➞ [["a", "b", "c"], ["Apple", "Microsoft", "Google"]]
+
+keysAndValues({ key1: true, key2: false, key3: undefined })
+➞ [["key1", "key2", "key3"], [true, false, undefined]]
+*/
+const keysAndValues = obj =>
+  Object.keys(obj).reduce(
+    (array, key) => [
+      [...array[0], key],
+      [...array[1], obj[key]],
+    ],
+    [[], []]
+  );
