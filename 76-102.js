@@ -641,3 +641,11 @@ const keysAndValues = obj =>
     ],
     [[], []]
   );
+
+//111
+//check if the length of the strings are equal
+const isEqual = ({ length: a }, { length: b }) => a === b;
+
+//112
+//return the data type of the fifth argument
+const fifth = (...arg) => typeof arg[4] || "Not enough arguments";
