@@ -649,3 +649,62 @@ const isEqual = ({ length: a }, { length: b }) => a === b;
 //112
 //return the data type of the fifth argument
 const fifth = (...arg) => typeof arg[4] || "Not enough arguments";
+
+//113 replicate endsWith - but does not discrminate with lower or upper case characters
+String.prototype.sameEnd = function (end = "") {
+  return [...this]
+    .slice(this.length - end.length)
+    .every((char, index) => char.toLowerCase() === end[index].toLowerCase());
+};
+const checkEnding = (a, b) => a.sameEnd(b);
+
+//114 get the sum of the array where numbers are greater than five
+const greaterThanFive = num => num > 5;
+const addReducer = (accumulator, current) => accumulator + current;
+const sumFive = arr => arr.filter(greaterThanFive).reduce(addReducer);
+
+//more efficient as it avoids second loop, condition is taken care of with addReducer function
+const addReducer = (accumulator, current) =>
+  accumulator + (current > 5 ? current : 0);
+
+//replicate String.prototype.repeat
+String.prototype.repeatIt = function (repeat) {
+  //NOTE the this object is NOT a string literal but a String object
+  //'hi' !== String('hi')
+  let str = this;
+  for (let i = 1; i < repeat; i++) {
+    str += this;
+  }
+  return str;
+};
+const repeatString = (s, n) => {
+  try {
+    return !n ? "" : s.repeatIt(n);
+  } catch (e) {
+    return "Not A String !!";
+  }
+};
+
+//check if array is shallow equal
+const bubbleSort = arr => {
+  let notSorted = true;
+  while (notSorted) {
+    notSorted = false;
+    arr.forEach((v, i) => {
+      if (i < arr.length && v > arr[i + 1]) {
+        ((array, a, b) => ([array[a], array[b]] = [array[b], array[a]]))(
+          arr,
+          i,
+          i + 1
+        );
+        notSorted = true;
+      }
+    });
+  }
+  return arr;
+};
+const checkEquals = (a, b) => {
+  const sortedA = bubbleSort(a);
+  const sortedB = bubbleSort(b);
+  return sortedA.every((v, i) => v === sortedB[i]);
+};
