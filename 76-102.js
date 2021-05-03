@@ -708,3 +708,8 @@ const checkEquals = (a, b) => {
   const sortedB = bubbleSort(b);
   return sortedA.every((v, i) => v === sortedB[i]);
 };
+
+//get difference
+const diff = (a, b) => b - a;
+const nextElement = ([a, b]) => diff(a, b);
+nextElement([3, 5, 7, 9]);
